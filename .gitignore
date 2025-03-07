@@ -1,4 +1,13 @@
 #ignore venv files
 *.env
 venv
-*.txt
+__pycache__/
+*.py[cod]
+.pytest_cache
+.python-version
+.tox
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
