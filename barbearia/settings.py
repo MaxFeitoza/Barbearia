@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+
 import os
 from pathlib import Path
 
@@ -25,7 +26,7 @@ SECRET_KEY = "django-insecure-r$l8_f33coj^=xus39(25j$qsu$5+&+y2uj-51)b#5m601vo7#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = [".pythonanywhere.com", "127.0.0.1"]
 
 
 # Application definition
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
     "user",
 ]
 
@@ -55,7 +57,7 @@ ROOT_URLCONF = "barbearia.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR,'templates')],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -77,11 +79,11 @@ WSGI_APPLICATION = "barbearia.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "barbearia",
-        "USER": "root",
-        "PASSWORD": "Maximus11_09",
-        "HOST": "127.0.0.1",
-        "PORT": "3306",
+        "NAME": os.environ.get("SQL_NAME"),
+        "USER": os.environ.get("SQL_USER"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD"),
+        "HOST": os.environ.get("SQL_HOST"),
+        "PORT": os.environ.get("SQL_PORT"),
     }
 }
 
@@ -122,9 +124,8 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATICFILES_DIRS =  [
-    os.path.join(BASE_DIR, "static")
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
