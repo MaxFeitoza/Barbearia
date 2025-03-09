@@ -17,6 +17,6 @@ class UserCreateView(generics.CreateAPIView):
     def create(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.save()
+        serializer.save()
         response_data = serializer.data.copy()
         return Response(response_data, status=status.HTTP_201_CREATED)
